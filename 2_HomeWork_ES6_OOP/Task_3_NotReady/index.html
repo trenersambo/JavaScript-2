@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/styleForma.css">
+    <title>СпортФорма</title>
+</head>
+<body>
+    <div class="wrapper">
+<header class="header_top">
+    <div class="header_logo">
+        <img class="bearLogo" src="img/logo.png" alt="">
+    </div>
+
+    <button class="btn-cart" type="button">Корзина</button>
+</header>
+
+<main>
+    <!-- samboForma (на grid): start -->
+    <!-- внутрь <samboForma> д.залетать 2 карточки samboForma_cart-->
+    <div class="samboForma">
+    
+    <!--(ТутНеВидима) samboForma_cart: start -->    
+    <div class="samboForma_cart">
+    
+
+    <div class="forma_kid_name">
+    <p class="name_text">Детская форма САМБО</p>
+    <input type="checkbox" name="formaSambo" id="1" value="yes" checked>
+    </div>
+    
+    <img class="forma_img" src="./img/sambo1.jpg" alt="" >
+
+    <div class="priceBonus">
+    <p class="forma_price"> Цена: 1000 руб*</p>
+    <p class="forma_bonus"> Бонус: 50 баллов*</p>    
+    </div>
+
+    <!-- Блок ВЫШИВКА: start -->
+    <div class="embroidery">
+    <div class="embr_top optionString">Вышивка на форме</div>
+
+    <div class="embr">
+    <p class="embr_top">Эмблема клуба:</p>
+    <input type="checkbox" name="formaSambo" id="embr_club" value=" " >
+    </div>
+
+    <div class="priceBonus">
+    <p class="forma_price"> Цена: 100 руб*</p>
+    <p class="forma_bonus"> Бонус: 25 баллов*</p>
+    </div>
+
+    <div class="embr">
+    <p class="embr_top">Эмблема САМБО:</p>
+    <input type="checkbox" name="formaSambo" id="embr_sambo" value=" " >
+    </div>
+
+    <div class="priceBonus">
+    <p class="forma_price"> Цена: 50 руб*</p>
+    <p class="forma_bonus"> Бонус: 20 баллов*</p>
+    </div>
+
+    <div class="embr">
+    <p class="embr_top">Имя Фамилия:</p>
+    <input type="checkbox" name="formaSambo" id="embr_fio" value=" " >
+    </div>
+
+    <div class="priceBonus">
+    <p class="forma_price"> Цена: 20 руб*</p>
+    <p class="forma_bonus"> Бонус: 10 баллов*</p>
+    </div>
+    
+    </div>
+    <!-- Блок ВЫШИВКА: end-->
+
+
+<!-- Блок ЦВЕТ ФОРМЫ: start-->
+<div class="forma_color">
+ <div class="color_top optionString">Опция: цвет формы</div>
+
+    <div class="clr">
+    <p class="color_top">Цвет формы Черный</p>
+    <input type="checkbox" name="formaSambo" id="clr_black" value=" " >
+    </div>
+
+    <div class="priceBonus">
+    <p class="forma_price"> Цена: 10 руб*</p>
+    <p class="forma_bonus"> Бонус: 5 баллов*</p>
+    </div>
+
+        <div class="clr">
+    <p class="color_top">Цвет формы Хаки:</p>
+    <input type="checkbox" name="formaSambo" id="clr_haki" value=" " >
+    </div>
+
+    <div class="priceBonus">
+    <p class="forma_price"> Цена: 5 руб*</p>
+    <p class="forma_bonus"> Бонус: 0 баллов*</p>
+    </div> 
+
+</div>
+<!-- Блок ЦВЕТ ФОРМЫ: end-->
+    
+    <!-- Цена за 1 покупку: start -->
+    <div class="calc">
+
+    <div class="calc_text">Итого: Стоимость и Бонусы</div>
+    <p class="calc_price">0 руб</p>
+    <div class="calc_bonus">0 bonus</div>
+
+    </div>
+    <!-- Цена за 1 покупку: end -->
+
+
+    </div>
+    <!-- (ТутНеВидима) samboForma_cart: end -->    
+
+
+
+
+
+    <!-- samboForma_cart: start -->    
+    <div class="samboForma_cart">
+    2_видим после отрисовки через JS
+    </div> 
+    <!-- samboForma_cart: end -->       
+
+
+    </div>
+    <!-- samboForma (на grid): end -->
+ 
+
+</main>
+
+</div>
+
+  <script src="#"></script> 
+
+ 
+
+</body>
+</html>
