@@ -18,7 +18,7 @@ this.render(); // отрисовка (?)
 
 
 fetсhGoodsData() {
-//этот массив будто получен из api(?) // фактич.ввел руками тут
+//2.1. этот массив будто получен из api(?) // фактич.ввел руками тут
   this.goods = [
   {
   title:     'Детская форма Самбо',
@@ -43,9 +43,9 @@ fetсhGoodsData() {
   id:        '2',
   img:       'sambo2.jpg',
   topPrice:   2000,
-  topBonus:   70,
-  clubPrice:  200,
-  clubBonus:  35,
+  topBonus:   50,
+  clubPrice:  100,
+  clubBonus:  25,
   samboPrice: 50,
   samboBonus: 20,
   namePrice:  20,
@@ -59,8 +59,31 @@ fetсhGoodsData() {
 
 }
 
+//2.2. метод: внутрь <samboForma> д.залетать 2 карточки samboForma_cart
+render( ) {
+// ссылка на тег <div class="samboForma">
+const samboFormaDiv = document.querySelector (this.samboFormaDiv);
 
-}//№2. КЛАСС, в нем есть КОНСТРУКТОР (шаблон cо свойствами): end
+// FOR ( OF ): перебор данных Сырого массива ("получен" из API) (?)
+for (let i of this.goods) {
+
+ // новый экзмепляр (ОднаКарточкаТовара), где родитель class ProductItem
+ const oneProductCard = new FormaSambo(i);
+
+// В пустой массив 'productObjects'  - добавляю данные в конец [ ]" !!
+ this.productObjects.push(oneProductCard);
+
+  //вставка <div class="samboForma"> __тут КарточкаТовара___ </div>
+  //html-код КарточкиТовара тянется из class FormaSambo
+  //getHTMLString() - метод из class FormaSambo
+  samboFormaDiv.insertAdjacentHTML('beforeend', oneProductCard.getHTMLString());
+
+    }
+
+  }
+
+ }
+//№2. КЛАСС, в нем есть КОНСТРУКТОР (шаблон cо свойствами): end
 
 
 
@@ -198,3 +221,7 @@ class FormaSambo {
 
 }
 // №1. Класс ФормаСАМБО (карточкаТовара?) :end
+
+// скрипт стартует отсюда
+const catalog = new ProductList(  );
+
