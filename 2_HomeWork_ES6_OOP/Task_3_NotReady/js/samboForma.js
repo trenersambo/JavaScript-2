@@ -126,7 +126,7 @@ class FormaSambo {
 
     <div class="forma_kid_name">
     <p class="name_text">${this.title}</p>
-    <input type="checkbox" name="formaSambo" id="${this.id}" value="yes" checked>
+    <input type="checkbox" name="formaSambo" id="${this.id}" data-price=" ${this.topPrice}" data-bonus=" ${this.topBonus}" >
     </div>
     
     <img class="forma_img" src="./img/${this.img}" alt="" >
@@ -142,7 +142,7 @@ class FormaSambo {
 
     <div class="embr">
     <p class="embr_top">Эмблема клуба:</p>
-    <input type="checkbox" name="formaSambo" id="embr_club" value=" " >
+    <input type="checkbox" name="formaSambo" id="embr_club" data-price=" ${this.clubPrice}" data-bonus=" ${this.clubBonus}" >
     </div>
 
     <div class="priceBonus">
@@ -152,7 +152,7 @@ class FormaSambo {
 
     <div class="embr">
     <p class="embr_top">Эмблема САМБО:</p>
-    <input type="checkbox" name="formaSambo" id="embr_sambo" value=" " >
+    <input type="checkbox" name="formaSambo" id="embr_sambo" data-price="${this.samboPrice} " data-bonus=" ${this.samboBonus} " >
     </div>
 
     <div class="priceBonus">
@@ -162,7 +162,7 @@ class FormaSambo {
 
     <div class="embr">
     <p class="embr_top">Имя Фамилия:</p>
-    <input type="checkbox" name="formaSambo" id="embr_fio" value=" " >
+    <input type="checkbox" name="formaSambo" id="embr_fio" data-price="${this.namePrice} " data-bonus=" ${this.nameBonus}" >
     </div>
 
     <div class="priceBonus">
@@ -180,7 +180,7 @@ class FormaSambo {
 
     <div class="clr">
     <p class="color_top">Цвет формы Черный</p>
-    <input type="checkbox" name="formaSambo" id="clr_black" value=" " >
+    <input type="checkbox" name="formaSambo" id="clr_black" data-price=" ${this.blackPrice}" data-bonus="${this.blackBonus} " >
     </div>
 
     <div class="priceBonus">
@@ -190,7 +190,7 @@ class FormaSambo {
 
     <div class="clr">
     <p class="color_top">Цвет формы Хаки:</p>
-    <input type="checkbox" name="formaSambo" id="clr_haki" value=" " >
+    <input type="checkbox" name="formaSambo" id="clr_haki" data-price=" ${this.hakiPrice}" data-bonus="${this.hakiBonus} " >
     </div>
 
     <div class="priceBonus">
@@ -205,8 +205,8 @@ class FormaSambo {
     <div class="calc">
 
     <div class="calc_text">Итого: Стоимость и Бонусы</div>
-    <p class="calc_price">0 руб</p>
-    <div class="calc_bonus">0 bonus</div>
+    <p class="calc_price"></p>
+    <div class="calc_bonus"></div>
 
     </div>
     <!-- Цена за 1 покупку: end -->
@@ -225,3 +225,40 @@ class FormaSambo {
 // скрипт стартует отсюда
 const catalog = new ProductList(  );
 
+
+
+const myCheck = document.querySelectorAll ('input[type="checkbox"]');
+const calcPrice = document.querySelector ('.calc_price');
+const calcBonus = document.querySelector ('.calc_bonus');
+
+  myCheck.forEach (function (e){
+
+  e.addEventListener ('change' , function(e){
+   
+      /* console.log(e.target.checked)
+      console.log(e.target.value)
+      console.log(e.target.dataset.price)  */
+
+
+let sumPrice = 0; 
+let sumBonus = 0;
+if (e.target.checked == true){
+ sumPrice = e.target.dataset.price;
+ sumBonus = e.target.dataset.bonus;
+} else {
+ sumPrice = -(e.target.dataset.price);
+ sumBonus = -(e.target.dataset.bonus);
+}
+
+ calcPrice.textContent = +calcPrice.textContent + +sumPrice;
+ calcBonus.innerHTML = +calcBonus.innerHTML + +sumBonus;
+ 
+  })
+
+  
+
+ })  
+
+ 
+
+ 

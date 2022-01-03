@@ -2,11 +2,11 @@ Task#3 from HomeWork learn#2.
 
 
 ru:
-этот файл пока не готов для работы.
-Тема дается мне сложно, поэтому делаю понемногу.
+этот файл пока почти готов для оценки преподавателем.
+Тема дается мне сложно, поэтому делаю  исправления в текущем режиме.
 
 eng:
-this file is not yet ready for work.
-The topic is difficult for me, so I do it little by little.
+This file is almost ready for teacher evaluation.
+Studying is difficult for me, so I make corrections in the current mode.
 
-02/01/2022, 6:00 AM
+03/01/2022, 10:40 PM
