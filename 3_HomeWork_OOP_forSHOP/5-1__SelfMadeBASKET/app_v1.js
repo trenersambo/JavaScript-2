@@ -12,6 +12,8 @@ class Identif{
     this.goodsFromServer();
     this.goodsFSPerebor() ;
 
+    //this.insQuantity = insQuantity
+     //this.insertNumber  
     } 
 
 
@@ -112,7 +114,7 @@ class Basket{
     this.ins_basket = document.querySelector(insBasket) ;
 
     //параметр ve,id,nameEl,priceEl  прокинутые из ф-ции getClass
-    //Из карточкиТовара (в которой кликнул "Купить")  
+    //thisы в КарточкеТовара (в которой кликнул кнопку "Купить")  
     this.idEl = ev.target.parentElement.parentElement.dataset.id ;//123 или 456  
     this.nameEl = ev.target.parentElement.children[0].innerText; // мышка или ноут
     this.priceEl = ev.target.parentElement.children[1].innerText ;// 1000 или 45600
@@ -124,14 +126,14 @@ class Basket{
     //запрос на СЕРВЕР (надо получить ответ =1)
     this.getAnswerResult () 
 
-    //this.renderNewHTMLstring() // тут не указывать эту функцию, иначе автоматом вызов идет
+    //this.renderNewHTMLstring() // тут не пиши эту функцию, иначе автоматом вызов идет
 
     };
 
 
 
 
-    //ф-ция запроса на Сервер
+    //ф-ция запроса на Сервер (при добавлении Товара в Корзину)
     getAnswerResult(){
     // От return зависит корректн.срабатывание .then№2 ?
     return fetch (`${API}/addToBasket.json`)
@@ -139,7 +141,7 @@ class Basket{
     .then (response => response.json( ) )    
     //.then ( (data) => {console.log (data.result)} ) // 1 (выловил result)
     .then ( (data) => {console.log (data.result); 
-        if(data.result == 1){
+        if(data.result == 1){ //json-файл ответа содержит "1"
         //вызов функции Вставки в Корзину данных о Товаре; или +/- Кол-ваТовара
         this.insertInBasket()
         }
@@ -151,22 +153,20 @@ class Basket{
 
     //функ-я Вставки в Корзину данных о Товаре; или +/- Кол-ваТовара
     insertInBasket () {
-    // тест вставки в Корзину:this.ins_basket.innerHTML ='...'    
-    // this.ins_basket.innerHTML = this.nameEl;
 
     // инициализация тегов
     let insertIB = document.querySelector ('.insertInBasket');//нашел Тег
 
-    //insertIB = insertIB.children[0].children[1].dataset.id;// нашел id у Товара в <div class="bfg_name" data-id="..">
-
     //для определения внутри тега "bfg_name" наличия цифры в id (ч/з dataset.id)
     let bfgName = document.querySelectorAll ('.bfg_name');
+
+ 
 
     //Искать по id в bfgName: надо ли отрисовать Добавленный Товар в Корзине или нет
     //(выбранный Товар д.б. отображен в Корзине только 1раз)
     //а его  кол-во регулируется кнопками + или - или повторн. клик "Купить"
  
-    //searchId нужна для вставки в оператор IF (...){..}
+    //searchId нужна для вставки в if (insertIB.children.length..){..}
     //searhID (this.idEl) - обязат-но с парамсом (this.idEl), иначе id в цикле не видит
     let searchId = searhID (this.idEl) 
 
@@ -177,7 +177,7 @@ class Basket{
         if (bfgName[i].dataset.id === id){
             return  bfgName[i].dataset.id
         }    
-        }
+     } // цикл :end
     } //function searhID(id) : end
 
         //включ-е функции РЕНДЕР новой строки добавленного товара в Корзину:
@@ -191,8 +191,10 @@ class Basket{
         //Но если такой id уже есть - тогда просто увеличь кол-во +1
      } else {
         console.log (' в html-коде Корзины есть такой id: увеличь кол-во на +1')
+        
+        //Self_ToDo: вызвать ф-цию запроса на Сервер (какое кол-во Товара: whatQuantity)
         //ToDo: вызвать ф-цию простого увеличения кол-ва товара 
- 
+        this.whatQuantity()
     } 
    
     }//insertInBasket (): end
@@ -205,7 +207,7 @@ class Basket{
             <img class="bfg_foto" src="${this.fotoEl}" alt="тутФото">
             <div class="bfg_name" data-id="${this.idEl}">${this.nameEl}</div>
             <div class="bfg_price">${this.priceEl}</div>
-            <div class="bfg_amount" data-quantity="">0</div>
+            <div class="bfg_amount" data-quantity="">1</div>
         </div>
 
         <div class="amount_change">
@@ -215,7 +217,64 @@ class Basket{
         </div>
         <hr>
      `)
+    } //renderNewHTMLstring(): end
+
+    //ф-ция запроса на Сервер (какое кол-во Товара/остатки на "складе": whatQuantity)
+    
+     whatQuantity() {
+     console.log ('вкл. ф-цию запроса у Сервера: есть еще 1 ед-ца товара?')
+ 
+      fetch (`${API}/getBasket.json`) //без return!
+
+     .then (response => response.json( ))
+    
+    // data покажет: {amount: 46600, countGoods: 2, contents: Array(2)}
+    // quantity найду (+сопостав. с id): data.contents[0].quantity
+     .then ( (data) => {console.log (data);
+
+        //вызов ф-ции, где по id кликнутого Товара на сервере 
+        //узнаю - можно ли еще 1ед. товара положить в Корзину
+        this.getQuantity(data)
+     })
+
+     .catch (err => console.log (err) );//сообщение об ошибке
+ 
+
+     }//whatQuantity(): end
+
+    //Ф-ия: можно ли еще 1ед. товара положить в Корзину? (ответ "1" = ок)
+    // ( "1" = ок) усл.значит, что Товар есть ещё на складе
+    getQuantity( data){
+        for (let i in data.contents){
+        //Если id кликнутого товара и товара с Сервера совпадут, то верни "1"
+        if (data.contents[i].id_product === +this.idEl){
+        console.log (data.contents[i].quantity) // 1 //1 ед. м.б. добавлена в Корзину
+        
+        let qNumber = data.contents[i].quantity;
+
+        //вызов ф-ции: Вставка еще 1ед-цы товара в Кеорзину
+        // в парамсе (qNumber) передается "1" из ответа сервера
+        this.insertNumber(qNumber)
+            }
+        }
+     };
+        //  ф-ция: Вставка еще 1ед-цы товара в Кеорзину
+      insertNumber (qNumber){
+
+    let bfgAmount = document.querySelectorAll ('.bfg_amount');
+    let bfgName = document.querySelectorAll ('.bfg_name');
+
+         //для вставки товара +1 в Корзину (стыковка по id)
+        for (let i = 0; i < bfgAmount.length; i++){
+            if (bfgName[i].dataset.id === this.idEl){
+             bfgAmount[i].innerText = +bfgAmount[i].innerText + +qNumber
+             
+             //ToDo: где-то тут будет ф-ция пересчета ТОТАЛЬНОЙ СУММЫ
+            }
+        }
+     
     }
+    
 
 
 }// class Basket{..}: end
