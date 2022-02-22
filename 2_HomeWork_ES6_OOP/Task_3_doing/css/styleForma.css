@@ -1,0 +1,189 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*фон */
+.wrapper{
+background-color: #5e5d5d;
+min-height: 100vh;    
+} 
+
+/*шапка: лого и "Корзина"*/
+
+.header_top{
+    border: 1px solid #000;
+    background: rgb(149, 149, 149);
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* позиция лого: поверх*/
+.header_logo{
+    position: relative;
+    margin-left: 30px;
+}
+
+/*_____ Кнопка 'Корзина' _____*/
+.btn-cart{
+    margin-right: 30px;
+    width: 100px;
+    height: 35px;
+    align-self: center;
+
+    border: 1px solid #000;
+    border-radius: 5px;
+}
+
+/*эфф-т при наведении на кнопку*/
+.btn-cart:hover{
+    box-shadow: 1px 0px 13px 4px #d1d1d1;
+}
+
+/*Общая обертка: samboForma ( grid )*/
+.samboForma{
+max-width: 1200px;
+/* border: 1px solid #000; */
+margin: 35px auto;
+
+ display: grid;
+    grid-gap: 22px;
+
+    /*адаптация grid под размер окна браузера*/
+    grid-template-columns: repeat(auto-fit, minmax(250px, 450px));
+    justify-content: center;
+
+}
+
+/*==== КАРТОЧКА ТОВАРА ====*/
+/*Обертка Одной карточки товара*/
+.samboForma_cart{
+max-width: 450px;
+border: 1px solid #2a2828;
+border-radius: 5px;
+background-color: #fff;
+margin-bottom: 25px;
+}
+
+.forma_kid_name{
+margin: 15px 0 15px 15px;
+display: flex;
+    justify-content: space-around;
+
+}
+
+.name_text{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+
+/*checkbox: УВЕЛИЧИТЬ окошко*/
+input[type=checkbox]{
+    align-self: center;
+  transform:scale(1.8);
+  opacity:0.9;
+  cursor:pointer;
+}
+
+/*центровка фото через vw !*/
+.forma_img{
+margin: 0 15%;
+}
+
+/*ценник и бонус*/
+.priceBonus{
+display: flex;
+gap: 10px;
+font-size: 18px;
+    margin: 15px 30px 15px 30px;
+    border-bottom: 2px solid #bfbfbf;
+}
+
+/*Блок "вышивка" (embroidery)*/
+.embroidery{
+margin: 30px;
+display: flex;
+ flex-direction: column;
+ row-gap: 8px;
+
+}
+.embr_top{
+    font-size: 20px;
+}
+.embr{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 15px;
+    font-size: 18px;
+}
+
+/*Блок "цвето формы" )*/
+.forma_color{
+margin: 30px;
+display: flex;
+ flex-direction: column;
+ row-gap: 8px;
+
+}
+.color_top{
+    font-size: 20px;
+}
+
+.clr{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 15px;
+    font-size: 18px;
+}
+
+/*цвет слов "Вышивка", "Цвет формы"*/
+.optionString{
+color: #e20724;
+}
+
+/* === Блок Цена за 1 покупку ===*/
+.calc{
+border: 1px solid #797979;
+margin: 0 25px 25px 25px;
+padding: 15px;
+
+display: flex;
+flex-direction: column;
+gap: 15px;
+border-radius: 8px;
+
+font-size: 18px;
+
+background-color: #fffec2;
+}
+
+.calc_text{
+font-weight: 600;
+}
+
+/*Приписка слов ДО и ПОСЛЕ*/
+.calc_price::before {
+content: 'Цена покупки: ';
+}
+.calc_price::after {
+content: ' рублей ';
+}
+
+.calc_bonus::before{
+content: 'Вами заработано: ';
+}
+.calc_bonus::after{
+content: ' бонусов ';
+}
+
+
+
+
+
+
+
+
+
