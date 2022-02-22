@@ -1,0 +1,185 @@
+* {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*фон серый*/
+.container {
+background-color: #5e5d5d;
+min-height: 100vh;    
+}
+
+/*шапка: лого и "Корзина"*/
+.header_top{
+    border: 1px solid #000;
+    background: rgb(149, 149, 149);
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+}
+/* позиция лого: поверх*/
+.header_logo{
+    position: relative;
+    margin-left: 30px;
+}
+
+ 
+
+/*_____ Кнопка 'Корзина' _____*/
+.btn-cart{
+    margin-right: 30px;
+    width: 100px;
+    height: 35px;
+    align-self: center;
+
+    border: 1px solid #000;
+    border-radius: 5px;
+}
+
+/*слова "Корзина пуста"*/
+.cartEmpity{
+color: #f61904;
+font-weight: 800;
+}
+
+/*эфф-т при наведении на кнопку КОРЗИНА*/
+.btn-cart:hover{
+    box-shadow: 1px 0px 13px 4px #d1d1d1;
+}
+
+/*_____ Блок товаров_______*/
+.products{
+    margin: 35px auto;
+    max-width: 500px;
+    display: flex;
+ 
+    text-align-last: center;
+ 
+    flex-direction: column;
+
+}
+
+
+
+.product-item {
+    display: inline-block;
+    border: 1px solid #ddd;
+    margin: 10px;
+    padding: 10px;
+    min-width: 250px;
+    background-color: silver;
+    border-radius: 5px;
+}
+
+.product-item h3 {
+    font-size: 1.8em;
+    margin: 10px;
+    margin-left: 20px;
+}
+
+.product-item p {
+    font-size: 1.3em;
+    text-align: right;
+}
+
+.product-item button {
+    border: 1px solid #b99;
+    background-color: #eddf00;
+    border-radius: 6px;
+    padding: 5px;
+    margin-top: 16px;
+    width: 200px;
+    height: 45px;
+}
+
+.menu-item:hover, .product-item:hover, .btn-cart:hover {
+        box-shadow: 0px 0px 15px 1px #fdfdfd;
+}
+
+.product-item > button:hover {
+    border-color: black;
+}
+
+.basket-container {
+/*     position: relative;
+    float: right; */
+        display: flex;
+}
+
+.basket {
+    box-shadow: 0 0 5px rgb(0 0 0 / 62%);
+    border-radius: 5px;
+    box-sizing: border-box;
+    /* right: 0; */
+    /* top: 130%; */
+    position: absolute;
+    background-color: white;
+    padding: 20px;
+    color: black;
+    width: 450px;
+    top: 70px;
+    right: 30px;
+}
+
+.hidden-element {
+    display: none;
+}
+
+.basket-table {
+    border: 1px solid #959595;
+    margin-bottom: 15px;
+}
+
+.basket-table td {
+    padding: 5px;
+    border-top: black 1px solid;
+    width: 100px;
+    text-align: right;
+}
+
+.basket-table td:first-child {
+    width: 200px;
+    text-align: left;
+}
+
+/*строка ПОИСК*/
+.btn-search {
+    background-color: transparent;
+    border: none;
+    color: #fafafa;
+    font-size: 1.2em;
+    position: absolute;
+    bottom: 20px;
+    right: 0;
+}
+.search-form{
+    position: relative;
+    margin-right: 50px;
+    display: flex;
+    padding-bottom: 15px;
+}
+.search-field:focus{
+    outline: none;
+}
+.search-field {
+    box-sizing: border-box;
+    width: 200px;
+    color: #fafafa;
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #fafafa;
+    margin-top: 22px;
+    font-size: 18px;
+}
+
+/*==экран менее 450рх*/ 
+@media (max-width: 450px){
+.search-form{
+display: none;
+}
+}
+
+
