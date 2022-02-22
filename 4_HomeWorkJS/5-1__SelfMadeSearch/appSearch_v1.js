@@ -7,7 +7,8 @@ class SearchBtn{
 
   }
 
-  // слушаю клик по кнопке ЛУПА -> вызываю ф-цию getValue, кот.увидит, что ввели в поисковую строку
+  // слушаю клик по кнопке ЛУПА -> вызываю ф-цию getValue, 
+  //кот.увидит, что ввели в поисковую строку
    listenLupa(){
    document.querySelector('.search-form').addEventListener('submit',this.getValue)  
   }
@@ -22,21 +23,30 @@ class SearchBtn{
    console.log (value)  // мышка
    const regexp = new RegExp (value, 'i'); //(мышка / 'любойРегистр')
    
+   //div 'desc', где найдем имя Товара (для сравнения с Поиском)
    let descDiv = document.querySelectorAll('.desc') ;
 
     // СхемаПоиска: /value/i.test(слово )
-    // Перебор тегов 'desc' в которых написаны ИмяТовара
+
     let arr = []
+    // Перебор тегов 'desc' в которых написаны ИмяТовара    
     for (let i = 0; i < descDiv.length; i++){
+
+    //тег с именем Товара помещу в [] при помощи arr.push(...)
      arr.push(descDiv[i].children[0].innerText)
-     console.log (arr)
+     console.log (`ИмяТовара в Массиве arr: ${arr}`)
+
+    //если нет искомого слова в данноv div'e, то этот div скрыть
+     if (regexp.test(arr[i]) !== true){
+     console.log (`блок ${arr[i]} скрыть, в нем нет искомого слова`)
+     //скрыть div, в кот.нет искомого слова
+     descDiv[i].parentElement.style.display = 'none'
+      }  
     }
     
    }//function valueSearch(value): end
 
     } //getValue(e):end
- 
- 
 
 }
 
