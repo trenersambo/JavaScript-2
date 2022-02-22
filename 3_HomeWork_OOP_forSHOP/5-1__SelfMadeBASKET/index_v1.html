@@ -16,30 +16,35 @@
 <!-- Внутрь insertBasket будет формироваться КОРЗИНА: start-->
 <div class="insertBasket">
 
-<!-- такой блок будет вставлен: start  -->
+<!-- общая обертка class="basket">КОРЗИНА: start -->
 <div class="basket">КОРЗИНА
 
 <div class="basket_flex">
 <div class="bf_foto">фото</div>
 <div class="bf_name">наименование</div>
 <div class="bf_price">цена</div>
-<div class="bf_amount">Колич-во</div>
+<div class="bf_amount">Кол-во</div>
 </div>
 
-<div class="basket_flex_goods">
-<div class="bfg_foto">фото-1</div>
-<div class="bfg_name">ИмяТовара-1</div>
-<div class="bfg_price">1000</div>
-<div class="bfg_amount">1</div>
-</div>
+    <!--insertInBasket такой блок будет вставляться: start  -->
+<div class="insertInBasket">
+        <div class="basket_flex_goods">
+            <div class="bfg_foto">фото-1</div>
+            <div class="bfg_name">ИмяТовара-1</div>
+            <div class="bfg_price">1000</div>
+            <div class="bfg_amount">1</div>
+        </div>
 
-<div class="amount_change">
-<div class="ac_plus" data-plus="1">+</div>
-<div class="ac_minus" data-minus="1">-</div>
+        <div class="amount_change">
+            <div class="ac_plus" data-plus="1">+</div>
+            <div class="ac_minus" data-minus="1">-</div>
+        </div>
+    
 </div>
+<!--insertInBasket такой блок будет вставляться: end  -->
 
 </div>
-<!-- такой блок будет вставлен: end  -->
+ <!-- общая обертка class="basket">КОРЗИНА: end-->
 
 </div>
 <!-- Внутрь insertBasket будет формироваться КОРЗИНА: end-->
@@ -49,7 +54,7 @@
     
     <!-- такой блок будет вставлен: start  -->
 
-<!--  <div class="product-item" data-id=" 001">
+<!--  <div class="product-item" data-id="123" data-id="456">
  <img src="#" alt="тутФото">
  <div class="desc">
  <h3>ИмяТовара</h3>
