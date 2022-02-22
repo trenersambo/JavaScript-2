@@ -333,6 +333,46 @@ class Basket{
     }
 
 }// class Basket{..}: end
+
+
+
+
+
+//делаю видимость/невидимость Корзины с товарами.
+//По умолчанию (при открытии страницы – Корзину не видим)
+//Клик по кнопке «Корзина»: активирует видимость корзины через стиль в CSS
+
+//Кнопка "Корзина"- слушаю клик=> вызов ф-ции, кот.активир. экземп-р класса
+document.querySelector ('.btn-cart').addEventListener('click', changeShowBasket)
+
+//вызов ф-ции, кот.активир. экз-р класса ToggleBasket
+function changeShowBasket(){
+
+//экз-р класса ToggleBasket (тег самой Корзины)
+const toggleBasket = new ToggleBasket ('.basket')
+} 
+
+//Исполнение toggle смог вставить в class(!)
+ class ToggleBasket{
+    constructor(  basketEl){
+    //тег самой корзины (значение basketEl = '.basket')
+    this.basket = document.querySelector (basketEl);
+    //автовызов ф-ции видим/не видим Корзину
+    this.listenBtnBasket()
+
+}
+
+listenBtnBasket(){
+    console.log ('клик по кнопке Корзина')
+    //видим или не видим (toggle: вкл/выкл класса "видимости")
+    this.basket.classList.toggle ('showBasket')
+ 
+}
+
+
+}//class ToggleBasket{..}: end
+
+ 
  
 
 

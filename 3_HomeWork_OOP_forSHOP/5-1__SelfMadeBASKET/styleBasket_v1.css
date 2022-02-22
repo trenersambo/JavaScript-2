@@ -7,8 +7,14 @@
     background: #efff14;
     position: absolute;
     right: 220px;
-    top: 65px
+    top: 65px;
+/*изначально Корзину не видим*/
+    display: none;
 
+}
+/*Видим Корзину: ч/з toggle*/
+.showBasket{
+display: block;
 }
 
 /*расстановка заголовков*/
