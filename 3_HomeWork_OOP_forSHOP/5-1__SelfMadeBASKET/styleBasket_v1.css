@@ -45,6 +45,9 @@
     gap: 15px;
     margin-right: 8px;
     margin-bottom: 8px;
+
+    border-bottom: 1px solid;
+    padding-bottom: 9px;
 }
 
 .ac_plus,
@@ -57,6 +60,8 @@
     font-size: 25px;
     text-align: center;
     line-height: 25px;
+
+    cursor: pointer;
 }
 
 

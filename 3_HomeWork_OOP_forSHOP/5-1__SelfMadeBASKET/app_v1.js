@@ -161,26 +161,42 @@ class Basket{
         
         let btnPlsMns = document.querySelectorAll('.changeBtn') ;
         btnPlsMns.forEach(function (event) {
-        // let BtnPlusMinus = new PlusMinus( )
+        // слушаю: какая кнопка (+или-) нажата=> вызов ф-ции для измен.счетчика кол-ва
             event.addEventListener ('click' , listenClickPlusMinus );
             
         })
         
         }
-
+        //ф-ция: какая кнопка нажата (+или-)=> Увел/уменьш.кол-во Товара в Корзине
+        //без запроса к Серверу на удаление:
        function listenClickPlusMinus(event){
-       // тест на имя data-
-       console.log (`data- кнопки(+/-):${event.target.dataset.pls}`) 
-       console.log (`data- кнопки(+/-):${event.target.dataset.mns}`)
- event.stopImmediatePropagation()
-//event.target.preventDefault()  //this.preventDefault()    
-//event.stopPropagation()  //this.stopPropagation()  
-//this.stop() //event.target.stop()
-       }
+       // тест на data- : +1 или -1
+       console.log (`data- кнопки(+/-):${event.target.dataset.btn}`) 
+
+       //сокращение длины прокидки от кнопки до тега "bfg_amount"
+        let amountEl = this.parentNode.previousElementSibling.children[3]
+
+        //увелич/уменьш (data =+1 и-1) кол-ва Товара в Корзине
+        amountEl.innerText = (+amountEl.innerText + +event.target.dataset.btn)
+
+        //тест на срабатывание, когда в Корзине НОЛЬ товаров
+        if (amountEl.innerText <= 0){
+         console.log ('В корзине НОЛЬ товаров по этой позиции!')
+         
+         //Если Ноль=>удаление строки (удаляю два тега)
+        this.parentNode.previousElementSibling.remove()
+        this.parentElement.remove()
+
+        }
+
+        //stop двойному срабатыванию клика (см. MDN)
+        event.stopImmediatePropagation()
+
+       } //listenClickPlusMinus (event): end
 
  
 
-        } //if: end
+        } // .then.... if: end
 
     } ) //2-й .then : end
 
@@ -250,11 +266,11 @@ class Basket{
         </div>
 
         <div class="amount_change">
-            <div class="ac_plus changeBtn" data-pls="1">+</div>
-            <div class="ac_minus changeBtn" data-mns="-1">-</div>
+            <div class="ac_plus changeBtn" data-btn="1">+</div>
+            <div class="ac_minus changeBtn" data-btn="-1">-</div>
 
         </div>
-        <hr>
+         
      `);
 
  
