@@ -13,7 +13,7 @@
 <button class="btn-cart" type="button">Корзина</button>
 </header>
 
-<!-- Внутрь insertBasket будет формироваться КОРЗИНА: start-->
+<!-- КОРЗИНА: start-->
 <div class="insertBasket">
 
 <!-- общая обертка class="basket">КОРЗИНА: start -->
@@ -26,28 +26,35 @@
 <div class="bf_amount">Кол-во</div>
 </div>
 
-    <!--insertInBasket такой блок будет вставляться: start  -->
+
 <div class="insertInBasket">
+    <!--в insertInBasket такой блок будет вставляться: start  -->
         <div class="basket_flex_goods">
             <div class="bfg_foto">фото-1</div>
             <div class="bfg_name">ИмяТовара-1</div>
             <div class="bfg_price">1000</div>
-            <div class="bfg_amount">1</div>
+            <div class="bfg_amount" data-quantity="">1</div>
         </div>
 
         <div class="amount_change">
             <div class="ac_plus" data-plus="1">+</div>
             <div class="ac_minus" data-minus="1">-</div>
+
         </div>
-    
+        <hr>
+<!--в insertInBasket такой блок будет вставляться: end  -->        
 </div>
-<!--insertInBasket такой блок будет вставляться: end  -->
+
+
+        <div class="totalSumm">
+        <p class="ts_p">Сумма итого:</p>
+        </div> 
 
 </div>
  <!-- общая обертка class="basket">КОРЗИНА: end-->
 
 </div>
-<!-- Внутрь insertBasket будет формироваться КОРЗИНА: end-->
+<!-- КОРЗИНА: end-->
 
 <main>
     <div class="products">

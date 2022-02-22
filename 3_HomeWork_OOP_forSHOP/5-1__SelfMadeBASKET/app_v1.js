@@ -85,37 +85,66 @@ setTimeout(
 function getSelect(){
  let clkBtn = document.querySelectorAll ('.buy-btn')
  clkBtn.forEach(function(ev){
-  ev.addEventListener ('click', getClass )
+  ev.addEventListener ('click', getClassBasket )
  })
-
 },1500 );
 
-//Отловил клик по кнопке - создается экземпляр класса
- function getClass(ev){
- //отовить id Карточки(для корзины Нужен?)
- console.log (ev.target.parentElement.parentElement.dataset.id);
- //idEl - для прокидки в class Basket{..}
-let idEl = ev.target.parentElement.parentElement.dataset.id
+//Отловил клик "Купить" =>
+//запрос на Сервер (если result ==1) ==>
+//активизирую Ф-цию создания экземпляра класса:let basket = new Basket
+ function getClassBasket(ev){
 
-//отловить ИМЯ и ЦЕНА:
-//ev.target.parentElement.children[0].innerText // мышка или ноут
-//ev.target.parentElement.children[1].innerText // 1000 или 45600
+ //Тест, что можно найти Цену, Имя или id КарточкиТовара
+ console.log (ev.target.parentElement.parentElement.dataset.id);//123 или 456 
+ console.log (ev.target.parentElement.children[0].innerText);// мышка или ноут
 
- // создается экземпляр класса
- let basket = new Basket('.insertInBasket', idEl);
+ // создается экземпляр класса (нужные! парамсы для передачи в Class) 
+ let basket = new Basket('.insertInBasket',ev);
  } 
 
 //№2. Клик Кнопки + 
-//КОРЗИНА: добавление / удаление
+//КОРЗИНА: добавление / удаление(тут же?? или др.класс?)
 class Basket{
-    constructor(insBasket,idEl ){
+    constructor(insBasket,ev ){
+
     //обозначил тег в Корзине
     this.ins_basket = document.querySelector(insBasket) ;
-    //id, перекинутый из ф-ции getClass
-    this.idEl = idEl ; 
+
+    //параметр ve,id,nameEl,priceEl  прокинутые из ф-ции getClass
+    //Из карточкиТовара (в которой кликнул "Купить")  
+    this.idEl = ev.target.parentElement.parentElement.dataset.id ;//123 или 456  
+    this.nameEl = ev.target.parentElement.children[0].innerText; // мышка или ноут
+    this.priceEl = ev.target.parentElement.children[1].innerText ;// 1000 или 45600
+    this.dataAnswer = [];// для чего?
+
+     this.insert //DELETE-1:  тест ф-ция работы кнопки через класс
+
+    //запрос на СЕРВЕР (надо получить ответ =1)
+    this.getAnswerResult ()  
+
     };
-    //тест вставки в Корзину
-    //this.ins_basket.innerHTML = 'нннdsd' // нннdsd
+
+    //DELETE-1: тест вставки в Корзину:this.ins_basket.innerHTML ='...'
+    insert () {
+    this.ins_basket.innerHTML = this.nameEl;
+    }
+
+    //ф-ция запроса на Сервер
+    getAnswerResult(){
+    // От return зависит корректн.срабатывание .then№2 ?
+    return fetch (`${API}/addToBasket.json`)
+    
+    .then (response => response.json( ) )    
+    //.then ( (data) => {console.log (data.result)} ) // 1 (выловил result)
+    .then ( (data) => {console.log (data.result); 
+        if(data.result == 1){
+        this.insert()
+        }
+    } )
+
+    .catch (err => console.log (err) );//сообщение об ошибке
+    }
+
 
 }
 
