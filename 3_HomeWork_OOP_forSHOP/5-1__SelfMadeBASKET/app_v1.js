@@ -1,3 +1,4 @@
+/* version 6, 12/02/2022 */
 //ссылка на Каталог с json-файлами
 const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses'
 
@@ -115,19 +116,20 @@ class Basket{
     this.idEl = ev.target.parentElement.parentElement.dataset.id ;//123 или 456  
     this.nameEl = ev.target.parentElement.children[0].innerText; // мышка или ноут
     this.priceEl = ev.target.parentElement.children[1].innerText ;// 1000 или 45600
-    this.dataAnswer = [];// для чего?
+    this.fotoEl = ev.target.parentElement.parentElement.children[0].src // фото
+    //this.dataAnswer = [];// для чего?
 
-     this.insert //DELETE-1:  тест ф-ция работы кнопки через класс
+     this.insertInBasket //функ-я Вставки в Корзину данных о Товаре; или +/- Кол-ваТовара
 
     //запрос на СЕРВЕР (надо получить ответ =1)
-    this.getAnswerResult ()  
+    this.getAnswerResult () 
+
+    //this.renderNewHTMLstring() // тут не указывать эту функцию, иначе автоматом вызов идет
 
     };
 
-    //DELETE-1: тест вставки в Корзину:this.ins_basket.innerHTML ='...'
-    insert () {
-    this.ins_basket.innerHTML = this.nameEl;
-    }
+
+
 
     //ф-ция запроса на Сервер
     getAnswerResult(){
@@ -138,18 +140,82 @@ class Basket{
     //.then ( (data) => {console.log (data.result)} ) // 1 (выловил result)
     .then ( (data) => {console.log (data.result); 
         if(data.result == 1){
-        this.insert()
+        //вызов функции Вставки в Корзину данных о Товаре; или +/- Кол-ваТовара
+        this.insertInBasket()
         }
     } )
 
     .catch (err => console.log (err) );//сообщение об ошибке
+
+    }//getAnswerResult():end
+
+    //функ-я Вставки в Корзину данных о Товаре; или +/- Кол-ваТовара
+    insertInBasket () {
+    // тест вставки в Корзину:this.ins_basket.innerHTML ='...'    
+    // this.ins_basket.innerHTML = this.nameEl;
+
+    // инициализация тегов
+    let insertIB = document.querySelector ('.insertInBasket');//нашел Тег
+
+    //insertIB = insertIB.children[0].children[1].dataset.id;// нашел id у Товара в <div class="bfg_name" data-id="..">
+
+    //для определения внутри тега "bfg_name" наличия цифры в id (ч/з dataset.id)
+    let bfgName = document.querySelectorAll ('.bfg_name');
+
+    //Искать по id в bfgName: надо ли отрисовать Добавленный Товар в Корзине или нет
+    //(выбранный Товар д.б. отображен в Корзине только 1раз)
+    //а его  кол-во регулируется кнопками + или - или повторн. клик "Купить"
+ 
+    //searchId нужна для вставки в оператор IF (...){..}
+    //searhID (this.idEl) - обязат-но с парамсом (this.idEl), иначе id в цикле не видит
+    let searchId = searhID (this.idEl) 
+
+    //Цикл сверка/поиск по id внутри let bfgName
+    //searhID(id) - обязат-но с (id): это прокинутый парамс из searhID (this.idEl) 
+    function searhID (id){
+    for (let i = 0; i < bfgName.length; i++) {
+        if (bfgName[i].dataset.id === id){
+            return  bfgName[i].dataset.id
+        }    
+        }
+    } //function searhID(id) : end
+
+        //включ-е функции РЕНДЕР новой строки добавленного товара в Корзину:
+        //Если вообще нет div class="insertInBasket" ( length  == 0 )
+        // или такого id нет ( !searchId : смотрю let searchId )
+      if (insertIB.children.length  == 0 || !searchId){
+        console.log ('Активирую рендер "с нуля" всей строки Нового товара ')
+        //вызывать ф-цию РЕНДЕРИНГА html-строки впервые кликнутого товара
+       this.renderNewHTMLstring()  
+ 
+        //Но если такой id уже есть - тогда просто увеличь кол-во +1
+     } else {
+        console.log (' в html-коде Корзины есть такой id: увеличь кол-во на +1')
+        //ToDo: вызвать ф-цию простого увеличения кол-ва товара 
+ 
+    } 
+   
+    }//insertInBasket (): end
+ 
+
+    //  ф-ция РЕНДЕРИНГА html-строки впервые кликнутого товара
+    renderNewHTMLstring(){
+     this.ins_basket.insertAdjacentHTML('afterbegin',`
+     <div class="basket_goods">
+            <img class="bfg_foto" src="${this.fotoEl}" alt="тутФото">
+            <div class="bfg_name" data-id="${this.idEl}">${this.nameEl}</div>
+            <div class="bfg_price">${this.priceEl}</div>
+            <div class="bfg_amount" data-quantity="">0</div>
+        </div>
+
+        <div class="amount_change">
+            <div class="ac_plus" data-plus="1">+</div>
+            <div class="ac_minus" data-minus="1">-</div>
+
+        </div>
+        <hr>
+     `)
     }
 
 
-}
-
-
-
-
-
-
+}// class Basket{..}: end

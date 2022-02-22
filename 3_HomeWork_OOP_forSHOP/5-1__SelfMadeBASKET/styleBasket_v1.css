@@ -6,13 +6,13 @@
     border: 1px solid #000;
     background: #efff14;
     position: absolute;
-    right: 150px;
+    right: 220px;
     top: 65px
 
 }
 
 /*расстановка заголовков*/
-.basket_flex{
+.basket_top{
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
@@ -24,13 +24,18 @@
 }
 
 /*расстановка данных Товара*/
-.basket_flex_goods{
+.basket_goods{
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
     margin-bottom: 10px;
     margin-left: 10px;
     margin-right: 10px;
+}
+
+/*размер фото Товара в корзине*/
+.bfg_foto{
+    max-width: 80px; 
 }
 
 /*стиль для Плюс / Минус ед-ца Товара*/
