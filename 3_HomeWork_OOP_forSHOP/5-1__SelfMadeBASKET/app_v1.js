@@ -1,4 +1,4 @@
-/* version 6, 12/02/2022 */
+/* version _, 14/02/2022 */
 //ссылка на Каталог с json-файлами
 const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses'
 
@@ -82,7 +82,7 @@ let identif = new Identif ()
 
 /* =========== */
 
-//Для прослушки клика -setTimeout на 2сек
+//Для прослушки клика "Купить" активирую setTimeout ч/з 12сек
 // чтоб успели загрузиться Карточки с Сервера
 setTimeout(
 function getSelect(){
@@ -127,12 +127,14 @@ class Basket{
     this.getAnswerResult () 
 
     //this.renderNewHTMLstring() // тут не пиши эту функцию, иначе автоматом вызов идет
-
+      this.listenPlusMinus
     };
 
 
 
-
+ //**NB!!**
+ // Походу это отправная точка для всех ф-ций, связанных с внутренностями Корзины
+    
     //ф-ция запроса на Сервер (при добавлении Товара в Корзину)
     getAnswerResult(){
     // От return зависит корректн.срабатывание .then№2 ?
@@ -143,9 +145,44 @@ class Basket{
     .then ( (data) => {console.log (data.result); 
         if(data.result == 1){ //json-файл ответа содержит "1"
         //вызов функции Вставки в Корзину данных о Товаре; или +/- Кол-ваТовара
-        this.insertInBasket()
+        this.insertInBasket() ;
+
+
+
+
+
+         /* TEST 14-02-22 вызов ф-ции */ // увидеть кнопки + /-
+        //вызов экз-ра класса PlusMinus (кнопки +/-)
+        // не смог вынести отдельно -пришлось тут делать
+
+         listenPlusMinus()
+
+        function listenPlusMinus( ) {
+        
+        let btnPlsMns = document.querySelectorAll('.changeBtn') ;
+        btnPlsMns.forEach(function (event) {
+        // let BtnPlusMinus = new PlusMinus( )
+            event.addEventListener ('click' , listenClickPlusMinus );
+            
+        })
+        
         }
-    } )
+
+       function listenClickPlusMinus(event){
+       // тест на имя data-
+       console.log (`data- кнопки(+/-):${event.target.dataset.pls}`) 
+       console.log (`data- кнопки(+/-):${event.target.dataset.mns}`)
+ event.stopImmediatePropagation()
+//event.target.preventDefault()  //this.preventDefault()    
+//event.stopPropagation()  //this.stopPropagation()  
+//this.stop() //event.target.stop()
+       }
+
+ 
+
+        } //if: end
+
+    } ) //2-й .then : end
 
     .catch (err => console.log (err) );//сообщение об ошибке
 
@@ -187,6 +224,8 @@ class Basket{
         console.log ('Активирую рендер "с нуля" всей строки Нового товара ')
         //вызывать ф-цию РЕНДЕРИНГА html-строки впервые кликнутого товара
        this.renderNewHTMLstring()  
+
+
  
         //Но если такой id уже есть - тогда просто увеличь кол-во +1
      } else {
@@ -211,12 +250,14 @@ class Basket{
         </div>
 
         <div class="amount_change">
-            <div class="ac_plus" data-plus="1">+</div>
-            <div class="ac_minus" data-minus="1">-</div>
+            <div class="ac_plus changeBtn" data-pls="1">+</div>
+            <div class="ac_minus changeBtn" data-mns="-1">-</div>
 
         </div>
         <hr>
-     `)
+     `);
+
+ 
     } //renderNewHTMLstring(): end
 
     //ф-ция запроса на Сервер (какое кол-во Товара/остатки на "складе": whatQuantity)
@@ -274,7 +315,11 @@ class Basket{
         }
      
     }
-    
-
 
 }// class Basket{..}: end
+ 
+
+
+
+
+
