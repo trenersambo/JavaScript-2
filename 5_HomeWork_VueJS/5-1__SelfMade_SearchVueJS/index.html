@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ПОИСК на VUE.JS</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/styleBasket_v1.css">
+</head>
+<body>
+<div id="app">
+    <header>
+        <div class="logo">search_vuejs</div>
+        <div class="cart">
+            <form action="#" class="search-form">
+             
+                <input type="text" v-model="searchLine" class="search-field" placeholder="Мышка или Ноутбук">
+
+                <button @click="filterGoods(searchLine)" class="btn-search"  type="submit">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+            <button class="btn-cart" type="button">Корзина</button>
+        </div>
+
+    </header>
+
+ <!-- место вставки тела КОРЗИНЫ:start -->
+<div v-html = "insertCart" >  </div> 
+<!-- место вставки тела КОРЗИНЫ:end -->
+
+    <main>
+        <div class="products">
+            <div class="product-item" v-for="product of products" :key="product.id_product">
+                <img :src="imgCatalog" alt="Some img">
+                <div class="desc">
+                    <h3>{{product.product_name}}</h3>
+                    <p>{{product.price}}₽</p>
+                    <button class="buy-btn" @click="addProduct(product)">Купить</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="testBlock">
+    <hr>
+    <p>Тест 2х сторонней связи c Поиском:{{searchLine}}</p>
+    </div>
+
+
+</div>
+<script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="js/searchVue.js"></script>
+</body>
+</html>
