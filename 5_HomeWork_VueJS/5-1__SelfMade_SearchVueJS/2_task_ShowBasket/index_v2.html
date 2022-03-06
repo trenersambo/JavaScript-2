@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ПОИСК на VUE.JS</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/styleBasket_v1.css">
+</head>
+<body>
+<div id="app">
+    <header>
+        <div class="logo">search_vuejs</div>
+        <div class="cart">
+            <form action="#" class="search-form">
+             
+                <input type="text" v-model="searchLine" class="search-field" placeholder="Мышка или Ноутбук">
+
+                <button @click="filterGoods(searchLine)" class="btn-search"  type="submit">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+            <button class="btn-cart" type="button" @click="showCart = !showCart">Корзина</button>
+        </div>
+
+    </header>
+
+ <!-- место вставки тела КОРЗИНЫ:start -->
+<!-- <div v-html = "insertCart" >  </div>  -->
+
+  <!-- КОРЗИНА: start-->
+<div class="baseBasket" v-show="showCart">
+
+<!-- общая обертка class="basket">КОРЗИНА: start -->
+<div class="basket">КОРЗИНА
+
+<div class="basket_top">
+<div class="bf_foto">фото</div>
+<div class="bf_name">наименование</div>
+<div class="bf_price">цена</div>
+<div class="bf_amount">Кол-во</div>
+</div>
+
+
+<div class="insertInBasket" v-for="elem of products" :key="elem.id_product">
+
+
+    <!--в insertInBasket такой блок будет вставляться: start  -->
+    <!-- --> 
+   <div class="basket_goods"  >
+            <div class="bfg_foto"> <img :src="img" alt=" image"></div>
+            <div class="bfg_name" :data-id= "elem.id_product">{{elem.product_name}}</div>
+            <div class="bfg_price">{{elem.price}}</div>
+            <div class="bfg_amount" :data-quantity="elem.quantity">{{elem.quantity}}</div>
+   </div>
+
+        <div class="amount_change">
+            <div class="ac_plus" data-plus="1">+</div>
+            <div class="ac_minus" data-minus="1">-</div>
+        </div>
+
+
+        
+<!--в insertInBasket такой блок будет вставляться: end  -->  
+
+
+
+</div>
+
+
+        <div class="totalSumm">
+        <p class="ts_p">Сумма итого:</p>
+        </div> 
+
+</div>
+ <!-- общая обертка class="basket">КОРЗИНА: end-->
+
+</div>
+<!-- КОРЗИНА: end-->
+
+
+<!-- место вставки тела КОРЗИНЫ:end -->
+
+    <main>
+        <div class="products">
+            <div class="product-item" v-for="product of products" :key="product.id_product">
+                <img :src="imgCatalog" alt="Some img">
+                <div class="desc">
+                    <h3>{{product.product_name}}</h3>
+                    <p>{{product.price}}₽</p>
+                    <button class="buy-btn" @click="addProduct(product)">Купить</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- <div class="testBlock">
+    <hr>
+    <p>Тест 2х сторонней связи c Поиском:{{searchLine}}</p>
+    </div> -->
+
+
+</div>
+<script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="js/searchVue.js"></script>
+</body>
+</html>

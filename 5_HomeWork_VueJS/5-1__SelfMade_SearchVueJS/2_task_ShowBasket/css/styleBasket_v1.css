@@ -1,0 +1,74 @@
+/*Стили для Корзины (basket)*/
+
+/*общая обертка*/
+.basket{
+    border-radius: 5px;
+    width: 550px;
+    border: 1px solid #000;
+    background: #ff7a22;
+    position: absolute;
+    right: 220px;
+    top: 75px;
+/*изначально Корзину не видим
+    display: none;*/
+
+}
+/*Видим Корзину: ч/з toggle*/
+.showBasket{
+display: block;
+}
+
+/*расстановка заголовков*/
+.basket_top{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-bottom: 2px solid #2e2d2d;
+
+}
+
+/*расстановка данных Товара*/
+.basket_goods{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+/*размер фото Товара в корзине*/
+.bfg_foto{
+    max-width: 80px; 
+}
+
+/*стиль для Плюс / Минус ед-ца Товара*/
+.amount_change{
+    display: flex;
+    justify-content: end;
+    gap: 15px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+
+    border-bottom: 1px solid;
+    padding-bottom: 9px;
+}
+
+.ac_plus,
+.ac_minus{
+    border: 1px solid #000;
+    background: #fde019;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    font-size: 25px;
+    text-align: center;
+    line-height: 25px;
+
+    cursor: pointer;
+}
+
+
