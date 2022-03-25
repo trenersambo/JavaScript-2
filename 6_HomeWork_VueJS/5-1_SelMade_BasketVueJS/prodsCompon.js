@@ -45,40 +45,25 @@ fetch ( `${API}/catalogData.json` )
 },
 
 template: 
-`  <div>
- <header>
-        <div class="logo">VueJS_Component_(v.1)</div>
-        <div class="cart">
-            <form action="#" class="search-form" >
-                <input type="text" class="search-field" >
-                <button class="btn-search" type="submit">
-                    <i class="fas fa-search"></i>
-                </button>
-            </form>
-            <button class="btn-cart" type="button"  >Корзина</button>
-        </div>
-    </header>
-
-    <main class= "products">
-       {{ goodsArrayFromAPI  }} 
-         
+` <!-- Шаблон (КарточкиДвухТоваров ) для передачи в index.html -->
+<div class= "products">
+    {{ goodsArrayFromAPI  }} 
      
-        <div class="product-item"
-        v-for = "el of arr" 
-        :key = "el.id_product" > 
+    <div class="product-item"
+      v-for = "el of arr" 
+      :key = "el.id_product" > 
 
-        тест:{{el}} 
-        <p> <img :src="foto" alt="" class= "img"> </p>
-        <p>{{el.product_name}}</p>
-        <p>{{el.price}}</p>
+       тест с сервера:<br>{{el}}
+      
+      <p> <img :src="foto" alt="" class= "img"> </p>
+      <p>{{el.product_name}}</p>
+      <p>{{el.price}}</p>
 
-          <button class="buy-btn">Купи-ка!</button>
-        
-        </div><!-- class="cardProduct: end -->
- 
-    </main>
+      <button class="buy-btn">Купи-ка!</button>
+  
+    </div>
 
-  </div>`
+</div> <!-- class="products: end --> `
 
 
 })//Vue.component: end
