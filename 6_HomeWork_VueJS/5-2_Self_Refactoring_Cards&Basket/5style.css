@@ -1,0 +1,39 @@
+ .header{
+    display: flex;
+    justify-content: space-evenly;
+    border: 1px solid #b9b9b9;
+    padding: 10px 0px; 
+ }
+
+ .basketCompon{
+     border: 1px solid;
+     padding: 10px;
+     border-radius: 5px;
+     background: #f1ff31;
+ }
+
+ .basketCompon:hover{
+     background: #a8a8a8;
+     color: #fbfbfb;
+     cursor: pointer;
+ }
+
+ /*Карточки Товара*/
+ .twoGoods_block{
+ border: 1px solid #000;
+ border-radius: 8px;
+ padding: 8px;
+ margin-top: 10px;
+ max-width: 200px;
+ text-align: center;
+ }
+
+ .basket_block{
+    border: 1px solid #000;
+    background: #dbdbdbcf;
+    padding: 10px;
+    width: 200px;
+    position: absolute;
+    left: 41vw;
+    top: 58px;
+ }
