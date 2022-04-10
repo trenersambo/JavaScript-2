@@ -61,8 +61,6 @@ template:
  delOneGood(id ){
  console.log  `Клик на удаление 1 Товар с id  ${id} `
 
- //let ar = this.arrayForBasket
-
  //1.Запрос на Сервер в кат-г /deleteFromBasket
   fetch( `${API}/deleteFromBasket.json` )
     .then ( (res)=>{
@@ -94,10 +92,7 @@ template:
         if (arrayForBasket[getIndex].quantity <= 0){
         arrayForBasket[getIndex].quantity = 0
       }
-      
       } //if:: end
-
-      
 
  })//2й .then ::end
 
@@ -123,11 +118,15 @@ template:
       <p>Имя_Товара: {{oneGood.product_name}}</p>
       <p >Количество: {{oneGood.quantity}}</p>
 
+      <p>Общая стоимость: {{oneGood.price*oneGood.quantity}}</p>      
+
       <button
       @click = "delOneGood(oneGood.id_product )"
       >
       <i class="fa fa-trash-o"> Удалить</i>      
       </button>
+
+
 
 
       <hr>
