@@ -54,28 +54,82 @@ template:
 
   props:{
   arrayForBasket: Array,
-   
-
   },
 
+ methods:{
+//Ф-ия для Удаления 1 Товара из Корзины (клик тащит id Товара)
+ delOneGood(id ){
+ console.log  `Клик на удаление 1 Товар с id  ${id} `
+
+ //let ar = this.arrayForBasket
+
+ //1.Запрос на Сервер в кат-г /deleteFromBasket
+  fetch( `${API}/deleteFromBasket.json` )
+    .then ( (res)=>{
+      return res.json();
+  })
+    .then( (data)=>{
+      // Чтоб этот .then увидел массив из props: arrayForBasket
+      let arrayForBasket = this.arrayForBasket
+
+      //что внутри JSONфайла
+      console.log  `Ответ /deleteFromBasket: ${data}`;//{result: 1}
+
+      // Если result === 1 (сервер говорит, что есть еще товар)
+      if (data.result === 1){
+      
+      //Ф-ция поиска ИНДЕКСА МАССИВА, где надо " quantity -1 "
+      function searchIndex(arrayForBasket){
+        
+        //задать условие .id массва д.б. === переданному id
+        return arrayForBasket.id_product === id
+      }
+
+      //метод .findIndex укажет на ИНДЕКС МАССИВА (из return)
+     const getIndex =  arrayForBasket.findIndex (searchIndex)
+
+     //в arrayForBasket[индекс] сделаем значение " quantity-1"
+      arrayForBasket[getIndex].quantity -=1
+     
+        if (arrayForBasket[getIndex].quantity <= 0){
+        arrayForBasket[getIndex].quantity = 0
+      }
+      
+      } //if:: end
+
+      
+
+ })//2й .then ::end
+
+       .catch (function(erorr){
+        console.log (erorr)
+        })
  
+ },//delOneGood::end
+
+ },//methods::end
 
   template:
   `<div >
-{{showBasket}}
 
   <div 
-
-   :showBasket = "showBasket"
+    :delOneGood = "delOneGood"
    v-for = "oneGood in arrayForBasket"
   :key = "oneGood.id_product"
-  
   >
 
       <!--<p>id: {{oneGood.id_product}}</p>-->
       <p>Цена: {{oneGood.price}}</p>
       <p>Имя_Товара: {{oneGood.product_name}}</p>
-      <p>Количество: {{oneGood.quantity}}</p> 
+      <p >Количество: {{oneGood.quantity}}</p>
+
+      <button
+      @click = "delOneGood(oneGood.id_product )"
+      >
+      <i class="fa fa-trash-o"> Удалить</i>      
+      </button>
+
+
       <hr>
 
   </div>
@@ -143,14 +197,14 @@ template:
   <div class="basketCompon"
   @click = "showBasket = !showBasket"
  
-  >{{showBasket}} Корзина</div>
+  > Корзина</div>
 
 
   <!--  КОРЗИНА (тег для компонента)  -->
   <basket-component
   class="basket_block"
   :arrayForBasket ="arrayForBasket"
-    v-show = "!showBasket"
+  v-show = "!showBasket"
   > </basket-component>
   
   </div>  <!-- header:: end -->
