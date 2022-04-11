@@ -1,0 +1,107 @@
+.apps{
+width: 536px;
+margin: 0 auto;
+}
+
+.activeTab {
+  color: #16C0B0;
+  text-decoration: underline;
+}
+
+.tab {
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+
+.product{
+    border: 1px solid #000;
+    min-width: 500px;
+    border-radius: 5px;
+    padding: 8px;
+    margin: 0 auto;
+    display: flex;
+
+}
+
+.product‐image{
+position: relative;
+}
+
+.imgSale{
+position: absolute;
+    left: 140px;
+    opacity: 0.8;
+}
+
+.textName{
+cursor: default;
+}
+
+.warning{
+    /* background: #ff8b0a; */
+    font-size: 22px;
+    text-align: center;
+    padding: 8px 0;
+    /* border-radius: 5px; */
+    color: #f60000;
+    font-weight: 700;
+}
+
+.color_box{
+    border: 1px solid #000;
+    margin: 0 0 8px;
+    text-align: center;
+ 
+}
+
+.noActive{
+    background: #8283821a;
+    color: #82838229;
+}
+
+.basket{
+display: flex;
+}
+
+.btnBskt{
+border: 1px solid #000;
+    background: #c0c1b5;
+    width: fit-content;
+    padding: 12px 12px;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 20px;
+    text-align: center;
+    margin-left: 20px;
+}
+
+.btnBskt:hover{
+    background: #eaeccc;
+    cursor: pointer;
+}
+
+.basketCount{
+border: 1px solid #000;
+    background: #5db2e8;
+    padding: 12px 12px;
+    font-size: 25px;
+    line-height: 20px;
+    text-align: center;
+    margin-bottom: 8px;
+}
+.product‐info{
+    margin: 0 0 0 20px;
+}
+
+.size{
+    display: flex;
+    height: 25px;
+    align-items: center;
+}
+.varColor{
+    border-top: 1px solid #868686;
+    border-bottom: 1px solid #868686;  
+    margin: 10px 0;
+}
